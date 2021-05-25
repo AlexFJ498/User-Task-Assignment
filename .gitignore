@@ -13,3 +13,4 @@
 composer.json
 composer.lock
 save_the_world.sh
+/web/public/plugins
