@@ -84,6 +84,7 @@ class UserService extends Controller {
             if(!isset($params['isActive'])){
                 throw $this->createNotFoundException('Is active error.');
             }
+
             if($params['isActive'] == 'true'){
                 $user->setIsActive(1);
             } else{

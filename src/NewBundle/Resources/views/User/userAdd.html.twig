@@ -106,18 +106,19 @@
 			form.addEventListener('submit', function (event) {
 				event.preventDefault()
 				if (form.checkValidity()) {
+					let checkState = $("#isActive").is(":checked") ? "true" : "false";
 				
 					$.ajax({
 						url: "{{ path('new_user_update') }}", 
 						data: {
-							'action': 'add',
+							'action':    'add',
 							'username':  $('#username').val(),
 							'firstName': $('#firstName').val(),
 							'lastName':  $('#lastName').val(),
 							'email':     $('#email').val(),
 							'password':  $('#password').val(),
 							'role':      $('#role').val(),
-							'isActive':  $('#isActive').val()
+							'isActive':  checkState
 						},
 						type: 'POST',
 						dataType: 'JSON',
