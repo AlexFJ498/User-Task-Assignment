@@ -61,6 +61,15 @@ class UserRepository extends \Doctrine\ORM\EntityRepository{
             $where .= " AND ( u.updated_at LIKE '%". trim($form_filters['updated_at']) ."%')" ;
         }
 
+        if (isset($form_filters['is_active']) AND !empty($form_filters['is_active'])){
+            if($form_filters['is_active'] == 'true'){
+                $where .= " AND ( u.is_active = true)" ;
+            } else{
+                $where .= " AND ( u.is_active = false)" ;
+            }
+                
+        }
+
         $sql = " SELECT u.username,
                         u.first_name,
                         u.last_name,
@@ -68,6 +77,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository{
                         u.role,
                         u.created_at,
                         u.updated_at,
+                        u.is_active,
                         u.id
                  FROM users AS u
                  WHERE u.is_deleted = 0

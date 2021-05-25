@@ -20,6 +20,9 @@
                 <input type="text" class="filter_inputs" name="first_name" placeholder="{% trans %}First name Filter{% endtrans %}">
                 <input type="text" class="filter_inputs" name="last_name" placeholder="{% trans %}Last name Filter{% endtrans %}">
                 <input type="text" class="filter_inputs" name="email" placeholder="{% trans %}Email Filter{% endtrans %}">
+                <input type="checkbox" class="filter_inputs" id="checkbox" name="is_active" checked>
+                <label class="form-check-label" for="checkbox">Activo</label>
+
                 <button class="btn btn-success" id="FilterBtn">Aceptar</button>
                 <table class="table table-striped table-hover" id="userIndexTable">
                     <thead>
@@ -195,13 +198,16 @@
         let reloadDataTable = function() {
             var form_filters = new Object();
             $('.filter_inputs').each(function () {
+                if($(this).attr('name') == 'is_active'){
+                    let checkState = $("#checkbox").is(":checked") ? "true" : "false";
+                    console.log(checkState);
+                    form_filters[$(this).attr('name')] = checkState;
+                } else{
                 form_filters[$(this).attr('name')] = $(this).val();
+                }
             });
-            console.log(form_filters);
 
             $("#userIndexTable").DataTable().search(JSON.stringify(form_filters)).draw();
-
-            console.log(JSON.stringify(form_filters));
         }
 
         $('#FilterBtn').click(function (){
