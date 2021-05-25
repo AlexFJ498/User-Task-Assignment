@@ -1,0 +1,81 @@
+new_user_index:
+    path:     /new_user/index
+    defaults: { _controller: NewBundle:NewUser:index }
+
+new_user_list:
+    path:     /new_user/list
+    defaults: { _controller: NewBundle:NewUser:getUsersList }
+
+new_user_add:
+    path:     /new_user/add
+    defaults: { _controller: NewBundle:NewUser:add }
+
+new_user_update:
+    path:     /new_user/update
+    defaults: { _controller: NewBundle:NewUser:update }
+
+new_user_view:
+    path:     /new_user/view/{id}
+    defaults: { _controller: NewBundle:NewUser:view }
+
+new_user_edit:
+    path:     /new_user/edit/{id}
+    defaults: { _controller: NewBundle:NewUser:edit }
+
+new_user_delete:
+    path:     /new_user/delete
+    defaults: { _controller: NewBundle:NewUser:delete }
+
+new_task_index:
+    path:     /new_task/index
+    defaults: { _controller: NewBundle:NewTask:index }
+
+new_task_list:
+    path:     /new_task/list
+    defaults: { _controller: NewBundle:NewTask:getTasksList }
+
+new_task_add:
+    path:     /new_task/add
+    defaults: { _controller: NewBundle:NewTask:add }
+
+new_task_update:
+    path:     /new_task/update
+    defaults: { _controller: NewBundle:NewTask:update }
+
+new_task_view:
+    path:     /new_task/view/{id}
+    defaults: { _controller: NewBundle:NewTask:view }
+
+new_task_edit:
+    path:     /new_task/edit/{id}
+    defaults: { _controller: NewBundle:NewTask:edit }
+
+new_task_delete:
+    path:     /new_task/delete
+    defaults: { _controller: NewBundle:NewTask:delete }
+
+new_task_custom:
+    path:     /new_task/custom
+    defaults: { _controller: NewBundle:NewTask:custom }
+
+new_task_end:
+    path:     /new_task/end
+    defaults: { _controller: NewBundle:NewTask:endTask}
+
+
+# Autentication
+
+new_homepage:
+    path: /
+    defaults: { _controller: NewBundle:NewUser:home }
+
+new_login:
+    path: /login
+    defaults: { _controller: NewBundle:Security:login }
+
+new_login_check:
+    path: /login_check
+    defaults: { _controller: NewBundle:Security:loginCheck }
+
+new_logout:
+    path: /logout

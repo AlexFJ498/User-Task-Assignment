@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <header>
+        <tool tool-id="symfony" tool-name="Symfony"/>
+        </header>
+        <body>
+            <trans-unit id="1">
+                <source>Add user</source>
+                <target>Añadir usuario</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Username</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>First name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Last name</source>
+                <target>Apellidos</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Email</source>
+                <target>Correo electrónico</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Password</source>
+                <target>Contraseña</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Role</source>
+                <target>Rol</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Your username</source>
+                <target>Nombre de usuario</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Your first name</source>
+                <target>Ingrese su nombre</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Your last name</source>
+                <target>Ingrese sus apellidos</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Your email</source>
+                <target>Ingrese su correo electrónico</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Your password</source>
+                <target>Ingrese una contraseña</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Select a role</source>
+                <target>Elija un rol</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Active</source>
+                <target>Activo</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Create user</source>
+                <target>Crear usuario</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Users</source>
+                <target>Usuarios</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>List Users</source>
+                <target>Lista de Usuarios</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Add User</source>
+                <target>Añadir Usuario</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Search</source>
+                <target>Buscar</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Administrator</source>
+                <target>Administrador</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>User</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Users</source>
+                <target>Usuarios</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Main Menu</source>
+                <target>Menú Principal</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Created</source>
+                <target>Creación</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Updated</source>
+                <target>Modificación</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>View</source>
+                <target>Ver</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>Delete</source>
+                <target>Eliminar</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>The user has been created.</source>
+                <target>El usuario ha sido creado.</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Unable to find user.</source>
+                <target>Usuario no encontrado.</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Edit user</source>
+                <target>Editar usuario</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>The user has been modified.</source>
+                <target>El usuario ha sido modificado.</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Enabled</source>
+                <target>Habilitado</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Disabled</source>
+                <target>Deshabilitado</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Delete user</source>
+                <target>Eliminar usuario</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>The user has been deleted.</source>
+                <target>El usuario ha sido eliminado.</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>Are you sure?</source>
+                <target>¿Estás seguro?</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>The user could not be deleted.</source>
+                <target>El usuario no pudo ser eliminado.</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>New task</source>
+                <target>Nueva Tarea</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Title</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>Description</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>Create task</source>
+                <target>Crear tarea</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>Task title</source>
+                <target>Título de la tarea</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>Task description</source>
+                <target>Descripción de la tarea</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>Add Task</source>
+                <target>Añadir Tarea</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>List Tasks</source>
+                <target>Lista de Tareas</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>Tasks</source>
+                <target>Tareas</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>The task has been created.</source>
+                <target>La tarea ha sido creada.</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>Date</source>
+                <target>Fecha</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>Status</source>
+                <target>Estado</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Waiting</source>
+                <target>Sin completar</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>Edit task</source>
+                <target>Editar tarea</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>Update task</source>
+                <target>Actualizar tarea</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>The task has been modified.</source>
+                <target>La tarea ha sido modificada.</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>The task has been deleted.</source>
+                <target>La tarea ha sido eliminada.</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Cancel</source>
+                <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>Are you sure ?</source>
+                <target>¿Estás seguro?</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>Please sign in</source>
+                <target>Inicie sesión</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>Sign in</source>
+                <target>Iniciar sesión</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>Welcome</source>
+                <target>Bienvenido</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>Finalize</source>
+                <target>Finalizar</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>My tasks</source>
+                <target>Mis tareas</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>The task has been finished.</source>
+                <target>La tarea ha sido finalizada.</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>The task has not been finished.</source>
+                <target>La tarea no ha sido finalizada.</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>Logout</source>
+                <target>Cerrar sesión</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>Finished</source>
+                <target>Completado</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>New Users</source>
+                <target>Usuarios (nuevo)</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>New Tasks</source>
+                <target>Tareas (nuevo)</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>Processing...</source>
+                <target>Procesando...</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>All</source>
+                <target>Todos</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Show _MENU_ records</source>
+                <target>Mostrar _MENU_ registros</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>Unknown results</source>
+                <target>No se encontraron resultados</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>Showing records from _START_ to _END_ from a total of _TOTAL_ records</source>
+                <target>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>Showing records from _START_ to _END_ from a total of _TOTAL_ records</source>
+                <target>Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>(filtered from a total of _MAX_ registers)</source>
+                <target>(filtrado de un total de _MAX_ registros)</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>Search:</source>
+                <target>Buscar:</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>Loading...</source>
+                <target>Cargando...</target>
+            </trans-unit>
+            <trans-unit id="79">
+                <source>First</source>
+                <target>Primero</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>Last</source>
+                <target>Último</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>Next</source>
+                <target>Siguiente</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>Previous</source>
+                <target>Anterior</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>: Activate to order column by ascending</source>
+                <target>: Activar para ordenar la columna de manera ascendente</target>
+            </trans-unit>
+            <trans-unit id="84">
+                <source>: Activate to order column by descending</source>
+                <target>: Activar para ordenar la columna de manera descendente</target>
+            </trans-unit>
+            <trans-unit id="85">
+                <source>Non available data in this table</source>
+                <target>Ningún dato disponible en esta tabla</target>
+            </trans-unit>
+            <trans-unit id="86">
+                <source>Showing records from 0 to 0 from a total of 0 records</source>
+                <target>Mostrando registros del 0 al 0 de un total de 0 registros</target>
+            </trans-unit>
+            <trans-unit id="87">
+                <source>This value should not be blank.</source>
+                <target>Este valor no debería estar vacío.</target>
+            </trans-unit>
+            <trans-unit id="88">
+                <source>User added</source>
+                <target>Usuario añadido</target>
+            </trans-unit>
+            <trans-unit id="89">
+                <source>Added User into the database</source>
+                <target>Añadido usuario a la base de datos</target>
+            </trans-unit>
+            <trans-unit id="90">
+                <source>You won't be able to revert this!</source>
+                <target>¡No podrás revertir esto!</target>
+            </trans-unit>
+            <trans-unit id="91">
+                <source>Yes, delete it!</source>
+                <target>¡Si, borrar!</target>
+            </trans-unit>
+            <trans-unit id="92">
+                <source>User deleted</source>
+                <target>Usuario eliminado</target>
+            </trans-unit>
+            <trans-unit id="93">
+                <source>User modified</source>
+                <target>Usuario modificado</target>
+            </trans-unit>
+            <trans-unit id="94">
+                <source>The user has been modified</source>
+                <target>El usuario ha sido modificado</target>
+            </trans-unit>
+            <trans-unit id="95">
+                <source>Select a user</source>
+                <target>Elija un usuario</target>
+            </trans-unit>
+            <trans-unit id="96">
+                <source>Added Task into the database</source>
+                <target>Añadida tarea a la base de datos</target>
+            </trans-unit>
+            <trans-unit id="97">
+                <source>Task modified</source>
+                <target>Tarea modificada</target>
+            </trans-unit>
+            <trans-unit id="98">
+                <source>The task has been modified</source>
+                <target>La tarea ha sido modificada</target>
+            </trans-unit>
+            <trans-unit id="99">
+                <source>Delete task</source>
+                <target>Eliminar tarea</target>
+            </trans-unit>
+            <trans-unit id="100">
+                <source>Task deleted</source>
+                <target>Eliminar tarea</target>
+            </trans-unit>
+            <trans-unit id="101">
+                <source>Task added</source>
+                <target>Tarea añadida</target>
+            </trans-unit>
+            <trans-unit id="102">
+                <source>Add task</source>
+                <target>Añadir tarea</target>
+            </trans-unit>
+            <trans-unit id="103">
+                <source>New My tasks</source>
+                <target>Mis tareas (nuevo)</target>
+            </trans-unit>
+            <trans-unit id="104">
+                <source>Task ended</source>
+                <target>Tarea completada</target>
+            </trans-unit>
+            <trans-unit id="105">
+                <source>The task has been ended.</source>
+                <target>La tarea ha sido completada.</target>
+            </trans-unit>
+            <trans-unit id="106">
+                <source>The task is not completed.</source>
+                <target>La tarea no está completada.</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>Username Filter</source>
+                <target>Filtro de usuario</target>
+            </trans-unit>
+            <trans-unit id="108">
+                <source>First name Filter</source>
+                <target>Filtro de nombre</target>
+            </trans-unit>
+            <trans-unit id="109">
+                <source>Last name Filter</source>
+                <target>Filtro de apellidos</target>
+            </trans-unit>
+            <trans-unit id="110">
+                <source>Email Filter</source>
+                <target>Filtro de correo</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>Invalid email format.</source>
+                <target>Formato de correo inválido.</target>
+            </trans-unit>
+            <trans-unit id="112">
+                <source>Tasks assignment</source>
+                <target>Asignación de tareas</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

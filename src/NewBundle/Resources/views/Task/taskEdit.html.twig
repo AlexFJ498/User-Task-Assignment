@@ -1,0 +1,127 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+	<div class="main container">
+		<div class="row well">
+			<div class="col-md-6">
+				<div class="page-header">
+					<h2>{% trans %}Edit task{% endtrans %}</h2>
+				</div>
+                
+				<fieldset>
+					<form id="add_form" class="needs-validation" novalidate>
+						<div class="form-group">
+							<label for="title" form="add_form">{% trans %} Title {% endtrans %}</label>
+							<input type="text" class="form-control" name="title" placeholder="{% trans %}Task title{% endtrans %}" id="title" value="{{ task.title }}" required>
+							<div class="invalid-feedback">
+								{% trans %}This value should not be blank.{% endtrans %}
+							</div>
+							<br/>
+						</div>
+
+                        <div class="form-group">
+							<label for="user" form="add_form" class="form-label">{% trans %} User {% endtrans %}</label>
+							<select name="user" id="user" class="form-select" required>
+								<option selected disabled value="">{% trans %}Select a user{% endtrans %}</option>
+                                {% for user in users %}
+                                    {% if user.id == task.user.id %}
+                                        <option value="{{ user.id }}" selected="selected">{{ user.firstName }} {{ user.lastName }}</option>
+                                    {% else %}
+                                        <option value="{{ user.id }}">{{ user.firstName }} {{ user.lastName }}</option>
+                                    {% endif %}
+                                {% endfor %}
+							</select>
+							<div class="invalid-feedback">
+								{% trans %}This value should not be blank.{% endtrans %}
+							</div>
+							<br/>
+						</div>
+						
+						<div class="form-group">
+							<label for="description" form="add_form">{% trans %} Description {% endtrans %}</label>
+							<input type="text" class="form-control" name="description" placeholder="{% trans %}Task description{% endtrans %}" id="description" value="{{ task.description }}" required>
+							<div class="invalid-feedback">
+								{% trans %}This value should not be blank.{% endtrans %}
+							</div>
+							<br/>
+						</div>
+
+						<div class="form-group">
+							<p>
+								<br/>
+								<button type="submit" class="btn btn-success" id="boton">{% trans %} Create task {% endtrans %}</button>
+							</p>
+						</div>
+					</form>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+
+		(function () {
+		'use strict'
+
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		var forms = document.querySelectorAll('.needs-validation')
+
+		// Loop over them and prevent submission
+		Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+			form.addEventListener('submit', function (event) {
+				event.preventDefault()
+				if (form.checkValidity()) {
+				
+					$.ajax({
+						url: "{{ path('new_task_update') }}", 
+						data: {
+                            'id': '{{ task.id }}',
+							'action': 'edit',
+							'title':  $('#title').val(),
+							'userId': $('#user').val(),
+							'description':  $('#description').val(),
+						},
+						type: 'POST',
+						dataType: 'JSON',
+						success: function (data) {
+							if(data.status == true) {
+								Swal.fire({
+									icon: 'success',
+									title: "{% trans %} Task modified {% endtrans %}",
+									text: data.message
+								}).then(() => {
+									window.location.href = "{{ path('new_task_index') }}";
+								})
+
+							} else {
+								Swal.fire({
+									icon: 'error',
+									title: 'Error!',
+									text: data.message
+								})
+							} 
+						},
+						error: function (data) {
+							Swal.fire({
+									icon: 'error',
+									title: 'Error!',
+									text: data.message
+								})
+						},
+					});
+				}
+
+				form.classList.add('was-validated')
+			}, false)
+			})
+		})()
+
+
+	</script>
+{% endblock %}

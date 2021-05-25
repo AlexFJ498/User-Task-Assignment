@@ -1,0 +1,287 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+	<div class="container well">
+	    <div class="col-md-5">
+	        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+	        <br>
+	        <dl>
+	            <dt>{{'Username'|trans}}</dt>
+	            <dd>
+	                {{ user.username }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'First name'|trans}}</dt>
+	            <dd>
+	                {{ user.firstName }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Last name'|trans}}</dt>
+	            <dd>
+	                {{ user.lastName }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Email'|trans}}</dt>
+	            <dd>
+	                {{ user.email }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Role'|trans}}</dt>
+	            <dd>
+                	{% if user.role == 'ROLE_ADMIN' %}
+						{% trans %}Administrator{% endtrans %}
+					{% elseif user.role == 'ROLE_USER' %}
+						{% trans %}User{% endtrans %}
+                	{% endif %}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Active'|trans}}</dt>
+	            <dd>
+                	{% if user.isActive == 1 %}
+						<span class="text-success">{% trans %}Enabled{% endtrans %}</span>
+					{% elseif user.isActive == 0 %}
+						<span class="text-warning">{% trans %}Disabled{% endtrans %}</span>
+                	{% endif %}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Created'|trans}}</dt>
+	            <dd>
+	                {{ user.createdAt|date('d-m-Y H:i') }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Updated'|trans}}</dt>
+	            <dd>
+	                {{ user.updatedAt|date('d-m-Y H:i') }}
+	                &nbsp;
+	            </dd>
+	            <br>
+	        </dl>
+	    </div>
+	    <div class="col-md-6">
+	    	<h3>{{ 'Actions'|trans }}:</h3>
+			<p>
+		    	<a href="{{ path('new_user_edit', { id: user.id }) }}" class="btn btn-primary btn-lg btn-block">
+		    		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+		        	{{ 'Edit user'|trans }}
+				 </a>
+			</p>
+			<p>
+			    <button href="{{ path('new_user_delete', {id: user.id}) }}" class="btn btn-danger btn-lg btn-block" id="deleteBtn">
+	                <span class="fa fa-trash-o"></span>
+	                {{ 'Delete user'|trans }}
+	            </button>
+			</p>
+
+			<div>
+			<br>
+			<br>
+			<h3>{{ 'Tasks'|trans }}:</h3>
+			<table class="table table-striped table-hover" id="userViewTable">
+					<thead>
+						<tr>
+							<th>{{ 'Title'|trans }}</th>
+							<th>{{ 'Date'|trans }}</th>
+							<th>{{ 'User'|trans }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for task in tasks %}
+							<tr data-id="{{ task.id }}">
+								<td>
+									<a href="{{ path('new_task_view', {id: task.id}) }}">{{ task.title }}</a>
+								</td>
+								<td>{{ task.createdAt|date('d-m-Y H:i') }}</td>
+								<td>
+									{% if task.status == 0 %}
+										<span class="fa fa-clock-o text-danger" title="{% trans %}Waiting{% endtrans %}" id="glyphicon-{{task.id}}"></span>
+									{% elseif task.status == 1 %}
+										<span class="fa fa-check text-success" title="{% trans %}Finish{% endtrans %}"></span>
+									{% endif %}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+	    </div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('public/plugins/DataTables/datatables.js') }}"></script>
+
+	<script>
+		tableTasks = $('#userViewTable').DataTable({
+			dom: 'Blrtip',
+        order:[0, 'ASC'],
+        searching:false,
+        rowReorder: true,
+                columnDefs: [
+                    { orderable: true, className: 'reorder', targets: [0,1,2] }
+                ],
+        lengthMenu: [[5, 25, 50, 100, -1], [5, 25, 50, 100, "{{('All')|trans}}"]],
+        buttons: [
+            {
+                extend: 'excelHtml5',
+            },
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+            },
+        ],
+		rowId: 'idRow',
+        responsive: true,
+        autoWidth: true,
+        "processing": true,
+        "serverSide": false,
+        "pagingType": "full_numbers",
+        language: {
+            "sProcessing": "{{ ('Processing...') | trans }}",
+            "sLengthMenu": "{{ ('Show _MENU_ records') | trans }}",
+            "sZeroRecords": "{{ ('Unknown results') | trans }}",
+            "sEmptyTable": "{{ ('Non available data in this table') | trans }}",
+            "sInfo": "{{ ('Showing records from _START_ to _END_ from a total of _TOTAL_ records') | trans }}",
+            "sInfoEmpty": "{{ ('Showing records from 0 to 0 from a total of 0 records') | trans }}",
+            "sInfoFiltered": "{{ ('(filtered from a total of _MAX_ registers)') | trans }}",
+            "sInfoPostFix": "",
+            "sSearch": "{{ ('Search:') | trans }}",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "{{ ('Loading...') | trans }}",
+            "oPaginate": {
+                "sFirst": "{{ ('First') | trans }}",
+                "sLast": "{{ ('Last') | trans }}",
+                "sNext": "{{ ('Next') | trans }}",
+                "sPrevious": "{{ ('Previous') | trans }}",
+            },
+            "oAria": {
+                "sSortAscending": "{{ (': Activate to order column by ascending') | trans }}",
+                "sSortDescending": "{{ (': Activate to order column by descending') | trans }}"
+            },
+        }
+
+		});
+			
+			{# {
+        dom: 'Blrtip',
+        order:[0, 'ASC'],
+        searching:false,
+        rowReorder: true,
+                columnDefs: [
+                    { orderable: true, className: 'reorder', targets: [0,1,2] }
+                ],
+        lengthMenu: [[5, 25, 50, 100, -1], [5, 25, 50, 100, "{{('All')|trans}}"]],
+        buttons: [
+            {
+                extend: 'excelHtml5',
+            },
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+            },
+        ],
+        rowId: 'idRow',
+        responsive: true,
+        autoWidth: true,
+        "processing": true,
+        "serverSide": true,
+        "pagingType": "full_numbers",
+        language: {
+            "sProcessing": "{{ ('Processing...') | trans }}",
+            "sLengthMenu": "{{ ('Show _MENU_ records') | trans }}",
+            "sZeroRecords": "{{ ('Unknown results') | trans }}",
+            "sEmptyTable": "{{ ('Non available data in this table') | trans }}",
+            "sInfo": "{{ ('Showing records from _START_ to _END_ from a total of _TOTAL_ records') | trans }}",
+            "sInfoEmpty": "{{ ('Showing records from 0 to 0 from a total of 0 records') | trans }}",
+            "sInfoFiltered": "{{ ('(filtered from a total of _MAX_ registers)') | trans }}",
+            "sInfoPostFix": "",
+            "sSearch": "{{ ('Search:') | trans }}",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "{{ ('Loading...') | trans }}",
+            "oPaginate": {
+                "sFirst": "{{ ('First') | trans }}",
+                "sLast": "{{ ('Last') | trans }}",
+                "sNext": "{{ ('Next') | trans }}",
+                "sPrevious": "{{ ('Previous') | trans }}",
+            },
+            "oAria": {
+                "sSortAscending": "{{ (': Activate to order column by ascending') | trans }}",
+                "sSortDescending": "{{ (': Activate to order column by descending') | trans }}"
+            },
+        }
+        }); #}
+
+		$('#deleteBtn').click(function(){
+            Swal.fire({
+                icon: 'warning',
+                title: "{% trans %} Are you sure? {% endtrans %}",
+                text: "{% trans %} You won't be able to revert this! {% endtrans %}",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "{% trans %} Yes, delete it! {% endtrans %}",
+                cancelButtonText: "{% trans %} Cancel {% endtrans %}"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    DeleteAjax({{ user.id }});
+                }
+            });
+        });
+
+        function DeleteAjax(id){
+            $.ajax({
+                url: "{{ path('new_user_delete') }}", 
+                data: {
+                    'id': id
+                },
+                type: 'POST',
+                dataType: 'JSON',
+                success: function (data) {
+                    if(data.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{% trans %} User deleted {% endtrans %}",
+                            text: data.message
+                        }).then(() => {
+                            window.location.href = "{{ path('new_user_index') }}";
+                        })
+
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: data.message
+                        })
+                    } 
+                },
+                error: function (data) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: data.message
+                    })
+                },
+            });
+        }
+	</script>
+
+{% endblock %}

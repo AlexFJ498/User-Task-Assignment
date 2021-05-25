@@ -1,0 +1,16 @@
+h2 {
+    color: orange;
+}
+
+.well {
+    display: flex;
+    background-color: rgb(235, 223, 223);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.custom {
+    width: 78px !important;
+}

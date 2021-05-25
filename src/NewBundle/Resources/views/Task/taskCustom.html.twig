@@ -1,0 +1,188 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+
+	<div class="container">
+		<div class="col-md-12">
+			<div class="page-header margin-none">
+				<h2 class="padding-none">{{ 'Tasks'|trans }}</h2>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover" id="taskCustomTable">
+					<thead>
+						<tr>
+							<th>{{ 'Title'|trans }}</th>
+							<th>{{ 'Date'|trans }}</th>
+							<th>{{ 'User'|trans }}</th>
+							<th>{{ 'Status'|trans }}</th>
+							<th>{{ 'Actions'|trans }}</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('public/plugins/DataTables/datatables.js') }}"></script>
+
+    <script>
+        tableTasks = $('#taskCustomTable').DataTable({
+        dom: 'Blrtip',
+        order:[0, 'ASC'],
+        searching:false,
+                rowReorder: true,
+                columnDefs: [
+                    { orderable: true, className: 'reorder', targets: [0,1,2,3] },
+                    { orderable: false, targets: 4 }
+                ],
+        rowReorder: true,
+        lengthMenu: [[5, 25, 50, 100, -1], [5, 25, 50, 100, "{{('All')|trans}}"]],
+        buttons: [
+            {
+                extend: 'excelHtml5',
+            },
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+            },
+        ],
+        rowId: 'idRow',
+        responsive: true,
+        autoWidth: true,
+        "processing": true,
+        "serverSide": true,
+        "pagingType": "full_numbers",
+        language: {
+            "sProcessing": "{{ ('Processing...') | trans }}",
+            "sLengthMenu": "{{ ('Show _MENU_ records') | trans }}",
+            "sZeroRecords": "{{ ('Unknown results') | trans }}",
+            "sEmptyTable": "{{ ('Non available data in this table') | trans }}",
+            "sInfo": "{{ ('Showing records from _START_ to _END_ from a total of _TOTAL_ records') | trans }}",
+            "sInfoEmpty": "{{ ('Showing records from 0 to 0 from a total of 0 records') | trans }}",
+            "sInfoFiltered": "{{ ('(filtered from a total of _MAX_ registers)') | trans }}",
+            "sInfoPostFix": "",
+            "sSearch": "{{ ('Search:') | trans }}",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "{{ ('Loading...') | trans }}",
+            "oPaginate": {
+                "sFirst": "{{ ('First') | trans }}",
+                "sLast": "{{ ('Last') | trans }}",
+                "sNext": "{{ ('Next') | trans }}",
+                "sPrevious": "{{ ('Previous') | trans }}",
+            },
+            "oAria": {
+                "sSortAscending": "{{ (': Activate to order column by ascending') | trans }}",
+                "sSortDescending": "{{ (': Activate to order column by descending') | trans }}"
+            },
+        },
+        ajax: {
+            url: "{{ path('new_task_list') }}",
+            method: 'POST',
+            data: {
+                'form_filters': $('#filtersForm').serialize(),
+                'idUser': '{{ idUser }}' 
+            }
+        }, drawCallback: function (){
+            AllDatatableFunctions()
+        },
+        columns: [
+            { data: {}, render: function(data, row) {
+                var pathView = ' {{ path('new_task_view', {id: 'toReplace'}) }}';
+                pathView = pathView.replace("toReplace", data['id']);
+
+                html = '<a href="' + pathView + '">' + data["title"] + '</a>';
+
+                return html;
+            }},
+            { data: 'created_at' },
+            { data: 'fullname' },
+            { data: {}, render: function(data, row) {
+                html = "";
+                if(data['status'] == 0){
+                    html += '<span class="fa fa-clock-o text-danger" title="{% trans %}Waiting{% endtrans %}" id="clock-' + data["id"] + '"></span>';
+                } else if (data['status'] == 1){
+                    html += '<span class="fa fa-check text-success" title="{% trans %}Finished{% endtrans %}" id="clock-' + data["id"] + '"></span>';
+                }
+
+                return html;
+            }},
+            { data: {}, render: function(data, row) {
+                html = '<button class="btn btn-sm btn-success btn-process deleteBtn" id="' + data["id"] + '">';
+                html += '{{ 'Finalize'|trans }}'
+                html += '</button>';
+
+                return html;
+            }},
+        ]
+        });
+
+        function AllDatatableFunctions(){
+            $(".deleteBtn").unbind("click");
+            $('.deleteBtn').click(function(){
+                let id = $(this).attr("id");
+                EndTaskAjax(id);
+            });
+        }
+
+        function EndTaskAjax(id){
+            $.ajax({
+                url: "{{ path('new_task_end') }}", 
+                data: {
+                    'id': id
+                },
+                type: 'POST',
+                dataType: 'JSON',
+                success: function (data) {
+                    if(data.status == true) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{% trans %} Task ended {% endtrans %}",
+                            text: data.message
+                        }).then(() => {
+                            if(data.taskStatus == 1){
+                                $('#clock-' + id).removeClass('fa-clock-o text-danger fa-check').addClass('fa-check text-success');
+                                $('#clock-' + id).prop('title', 'Finish');
+                                
+                                $('#user-message').html(data.message);
+                                
+                                $('#message').removeClass('alert-danger');
+                                $('#message').addClass('alert-success');
+                            } else{
+                                $('#clock-' + id).removeClass('fa-check text-success').addClass('fa-clock-o text-danger');
+                                $('#clock-' + id).prop('title', 'Waiting');
+                                
+                                $('#message').removeClass('alert-success');
+                                $('#message').addClass('alert-danger');
+
+                                $('#user-message').html(data.message);
+                            }
+                            $('#message').removeClass("hidden");
+                        })
+
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: data.message
+                        })
+                    } 
+                },
+                error: function (data) {
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: data.message
+                        })
+                },
+            });
+        }
+    </script>
+    {# <script src="{{ asset('bundles/new/js/task-process.js') }}"></script> #}
+{% endblock %}
